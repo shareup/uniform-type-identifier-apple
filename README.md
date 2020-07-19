@@ -16,5 +16,5 @@ let package = Package(
 
 ## License
 
-The license for Database is the standard MIT licence. You can find it in the `LICENSE` file.
+The license for `UniformTypeIdentifier` is the standard MIT licence. You can find it in the `LICENSE` file.
 
