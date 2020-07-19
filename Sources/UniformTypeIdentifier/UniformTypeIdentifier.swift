@@ -6,7 +6,7 @@
     import CoreServices
 #endif
 
-public struct UniformTypeIdentifier: RawRepresentable, Equatable, CustomStringConvertible {
+public struct UniformTypeIdentifier: RawRepresentable, Hashable, Codable, CustomStringConvertible {
     public let rawValue: String
 
     public init(rawValue: String) {
