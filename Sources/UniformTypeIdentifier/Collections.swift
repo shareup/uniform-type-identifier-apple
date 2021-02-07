@@ -4,8 +4,8 @@ extension UniformTypeIdentifier {
     /// `Set` of `UniformTypeIdentifier`s including user-generated documents, media, and other files.
     ///
     /// Does not include directories, aliases, or bundles.
-    public static var documents: Set<UniformTypeIdentifier> {
-        return [
+    public static var documentTypes: Set<UniformTypeIdentifier> {
+        [
             .item,
             .content,
             .compositeContent,
@@ -146,9 +146,86 @@ extension UniformTypeIdentifier {
 }
 
 extension UniformTypeIdentifier {
+    /// `Set` of `UniformTypeIdentifier`s including image types.
+    public static var imageTypes: Set<UniformTypeIdentifier> {
+        [
+            .image,
+            .jpeg,
+            .jpeg2000,
+            .tiff,
+            .pict,
+            .gif,
+            .png,
+            .quickTimeImage,
+            .appleICNS,
+            .bmp,
+            .ico,
+            .rawImage,
+            .scalableVectorGraphics,
+            .livePhoto,
+            .photoshopImage,
+            .aiImage,
+            .tgaImage,
+            .sgiImage,
+            .openEXRImage,
+            .flashPixImage,
+            .apng,
+            .avif,
+            .webp,
+        ]
+    }
+
+    /// `Set` of `UniformTypeIdentifier`s including video and video collection types.
+    public static var videoTypes: Set<UniformTypeIdentifier> {
+        [
+            .audiovisualContent,
+            .movie,
+            .video,
+            .quickTimeMovie,
+            .mpeg,
+            .mpeg2Video,
+            .mpeg2TransportStream,
+            .mpeg4,
+            .appleProtectedMPEG4Video,
+            .aviMovie,
+            .windowsMediaWM,
+            .windowsMediaWMV,
+            .windowsMediaWMP,
+            .windowsMediaWMX,
+            .windowsMediaWVX,
+            .realMedia,
+            .realSMIL,
+            .webmVideo,
+            .oggVideo,
+            .oggApplication,
+        ]
+    }
+
+    /// `Set` of `UniformTypeIdentifier`s including audio and audio collection types.
+    public static var audioTypes: Set<UniformTypeIdentifier> {
+        [
+            .audio,
+            .mp3,
+            .mpeg4Audio,
+            .appleProtectedMPEG4Video,
+            .audioInterchangeFileFormat,
+            .waveformAudio,
+            .midiAudio,
+            .playlist,
+            .m3uPlaylist,
+            .windowsMediaWAX,
+            .sd2Audio,
+            .realMediaAudio,
+            .webmAudio,
+            .oggAudio,
+        ]
+    }
+}
+
+extension UniformTypeIdentifier {
     /// `Set` of `UniformTypeIdentifier`s including folders and bundles.
-    public static var directories: Set<UniformTypeIdentifier> {
-        return [
+    public static var directoryTypes: Set<UniformTypeIdentifier> {
+        [
             .directory,
             .folder,
             .volume,

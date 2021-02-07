@@ -171,6 +171,19 @@ extension UniformTypeIdentifier {
 }
 
 extension UniformTypeIdentifier {
+    public static let apng = UniformTypeIdentifier(mimeType: "image/apng")!
+    public static let avif = UniformTypeIdentifier(mimeType: "image/avif")!
+    public static let webp = UniformTypeIdentifier(mimeType: "image/webp")!
+    public static let flash = UniformTypeIdentifier(mimeType: "video/x-flv")!
+    public static let webmVideo = UniformTypeIdentifier(mimeType: "video/webm")!
+    public static let _3gp = UniformTypeIdentifier(mimeType: "video/3gpp")!
+    public static let oggVideo = UniformTypeIdentifier(mimeType: "video/ogg")!
+    public static let webmAudio = UniformTypeIdentifier(mimeType: "audio/webm")!
+    public static let oggAudio = UniformTypeIdentifier(mimeType: "audio/ogg")!
+    public static let oggApplication = UniformTypeIdentifier(mimeType: "application/ogg")!
+}
+
+extension UniformTypeIdentifier {
     public static let wordDocumentXML = UniformTypeIdentifier(rawValue: "org.openxmlformats.wordprocessingml.document")
     public static let excelSpreadsheetXML = UniformTypeIdentifier(rawValue: "org.openxmlformats.spreadsheetml.sheet")
     public static let powerpointPresentationXML = UniformTypeIdentifier(rawValue: "org.openxmlformats.presentationml.presentation")
