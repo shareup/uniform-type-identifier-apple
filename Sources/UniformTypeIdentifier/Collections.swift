@@ -1,237 +1,77 @@
 import Foundation
 
 extension UniformTypeIdentifier {
-    /// `Set` of `UniformTypeIdentifier`s including user-generated documents, media, and other files.
-    ///
-    /// Does not include directories, aliases, or bundles.
-    public static var documentTypes: Set<UniformTypeIdentifier> {
-        [
-            .item,
-            .content,
-            .compositeContent,
-            .message,
-            .contact,
-            .data,
-            .url,
-            .fileURL,
-            .text,
-            .plainText,
-            .utf8PlainText,
-            .utf16ExternalPlainText,
-            .utf16PlainText,
-            .delimitedText,
-            .commaSeparatedText,
-            .tabSeparatedText,
-            .utf8TabSeparatedText,
-            .rtf,
-            .html,
-            .xml,
-            .sourceCode,
-            .assemblyLanguageSource,
-            .cSource,
-            .objectiveCSource,
-            .swiftSource,
-            .cPlusPlusSource,
-            .objectiveCPlusPlusSource,
-            .cHeader,
-            .cPlusPlusHeader,
-            .javaSource,
-            .script,
-            .appleScript,
-            .osaScript,
-            .osaScriptBundle,
-            .javaScript,
-            .shellScript,
-            .perlScript,
-            .pythonScript,
-            .rubyScript,
-            .phpScript,
-            .json,
-            .propertyList,
-            .xmlPropertyList,
-            .binaryPropertyList,
-            .pdf,
-            .rtfd,
-            .flatRTFD,
-            .txnTextAndMultimediaData,
-            .webArchive,
-            .image,
-            .jpeg,
-            .jpeg2000,
-            .tiff,
-            .pict,
-            .gif,
-            .png,
-            .quickTimeImage,
-            .appleICNS,
-            .bmp,
-            .ico,
-            .rawImage,
-            .scalableVectorGraphics,
-            .livePhoto,
-            .audiovisualContent,
-            .movie,
-            .video,
-            .audio,
-            .quickTimeMovie,
-            .mpeg,
-            .mpeg2Video,
-            .mpeg2TransportStream,
-            .mp3,
-            .mpeg4,
-            .mpeg4Audio,
-            .appleProtectedMPEG4Audio,
-            .appleProtectedMPEG4Video,
-            .aviMovie,
-            .audioInterchangeFileFormat,
-            .waveformAudio,
-            .midiAudio,
-            .playlist,
-            .m3uPlaylist,
-            .javaClass,
-            .javaArchive,
-            .gnuZipArchive,
-            .bzip2Archive,
-            .zipArchive,
-            .spreadsheet,
-            .presentation,
-            .database,
-            .vCard,
-            .toDoItem,
-            .calendarEvent,
-            .emailMessage,
-            .internetLocation,
-            .inkText,
-            .font,
-            .bookmark,
-            ._3dContent,
-            .pkcs12,
-            .x509Certificate,
-            .electronicPublication,
-            .log,
-            .postscript,
-            .encapsulatedPostscript,
-            .photoshopImage,
-            .aiImage,
-            .wordDocument,
-            .excelSpreadsheet,
-            .powerpointPresentation,
-            .advancedSystems,
-            .windowsMediaWM,
-            .windowsMediaWMV,
-            .windowsMediaWMP,
-            .windowsMediaWMA,
-            .advancedStreamRedirector,
-            .windowsMediaWMX,
-            .windowsMediaWVX,
-            .windowsMediaWAX,
-            .keynotePresentation,
-            .keynoteTheme,
-            .tgaImage,
-            .sgiImage,
-            .openEXRImage,
-            .flashPixImage,
-            .jfxFax,
-            .efxFax,
-            .sd2Audio,
-            .realMedia,
-            .realMediaAudio,
-            .realSMIL,
-            .stuffitArchive,
-            .wordDocumentXML,
-            .excelSpreadsheetXML,
-            .powerpointPresentationXML,
-        ]
+    /// `UniformTypeIdentifier`s including user-generated documents, media, and other files.
+    public var isDocument: Bool {
+        if isImage || isVideo || isAudio || conforms(to: .content) {
+            return true
+        } else {
+            switch self {
+            case .osaScriptBundle,
+                 .propertyList,
+                 .xmlPropertyList,
+                 .binaryPropertyList,
+                 .playlist,
+                 .javaClass,
+                 .javaArchive,
+                 .gnuZipArchive,
+                 .zipArchive,
+                 .bzip2Archive,
+                 .database,
+                 .toDoItem,
+                 .calendarEvent,
+                 .emailMessage,
+                 .font,
+                 .pkcs12,
+                 .x509Certificate,
+                 .log,
+                 .efxFax,
+                 .stuffitArchive:
+                return true
+                
+            default:
+                return false
+            }
+        }
     }
-}
 
-extension UniformTypeIdentifier {
     /// `Set` of `UniformTypeIdentifier`s including image types.
-    public static var imageTypes: Set<UniformTypeIdentifier> {
-        [
-            .image,
-            .jpeg,
-            .jpeg2000,
-            .tiff,
-            .pict,
-            .gif,
-            .png,
-            .quickTimeImage,
-            .appleICNS,
-            .bmp,
-            .ico,
-            .rawImage,
-            .scalableVectorGraphics,
-            .livePhoto,
-            .photoshopImage,
-            .aiImage,
-            .tgaImage,
-            .sgiImage,
-            .openEXRImage,
-            .flashPixImage,
-            .apng,
-            .avif,
-            .webp,
-        ]
+    public var isImage: Bool {
+        if conforms(to: .image) {
+            return true
+        } else {
+            switch self {
+            case .livePhoto, .flashPixImage, .apng, .avif:
+                return true
+            default:
+                return false
+            }
+        }
     }
 
-    /// `Set` of `UniformTypeIdentifier`s including video and video collection types.
-    public static var videoTypes: Set<UniformTypeIdentifier> {
-        [
-            .audiovisualContent,
-            .movie,
-            .video,
-            .quickTimeMovie,
-            .mpeg,
-            .mpeg2Video,
-            .mpeg2TransportStream,
-            .mpeg4,
-            .appleProtectedMPEG4Video,
-            .aviMovie,
-            .windowsMediaWM,
-            .windowsMediaWMV,
-            .windowsMediaWMP,
-            .windowsMediaWMX,
-            .windowsMediaWVX,
-            .realMedia,
-            .realSMIL,
-            .webmVideo,
-            .oggVideo,
-            .oggApplication,
-        ]
+    public var isVideo: Bool {
+        if conforms(to: .audiovisualContent) {
+            return true
+        } else {
+            switch self {
+            case .webmVideo, .oggVideo:
+                return true
+            default:
+                return false
+            }
+        }
     }
 
-    /// `Set` of `UniformTypeIdentifier`s including audio and audio collection types.
-    public static var audioTypes: Set<UniformTypeIdentifier> {
-        [
-            .audio,
-            .mp3,
-            .mpeg4Audio,
-            .appleProtectedMPEG4Video,
-            .audioInterchangeFileFormat,
-            .waveformAudio,
-            .midiAudio,
-            .playlist,
-            .m3uPlaylist,
-            .windowsMediaWAX,
-            .sd2Audio,
-            .realMediaAudio,
-            .webmAudio,
-            .oggAudio,
-        ]
-    }
-}
-
-extension UniformTypeIdentifier {
-    /// `Set` of `UniformTypeIdentifier`s including folders and bundles.
-    public static var directoryTypes: Set<UniformTypeIdentifier> {
-        [
-            .directory,
-            .folder,
-            .volume,
-            .package,
-            .bundle,
-            .applicationBundle,
-        ]
+    public var isAudio: Bool {
+        if conforms(to: .audio) {
+            return true
+        } else {
+            switch self {
+            case .webmAudio, .oggAudio:
+                return true
+            default:
+                return false
+            }
+        }
     }
 }

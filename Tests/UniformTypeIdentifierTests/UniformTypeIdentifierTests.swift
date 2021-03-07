@@ -137,6 +137,37 @@ final class UniformTypeIdentifierTests: XCTestCase {
         XCTAssertNil(UniformTypeIdentifier.internetLocation.mimeType)
     }
 
+    func testAdditionalTypes() throws {
+        // webp
+        let webp = UniformTypeIdentifier.webp
+        XCTAssertEqual("org.webmproject.webp", webp.rawValue)
+        if #available(iOS 14, *) {
+            XCTAssertEqual("image/webp", webp.mimeType)
+            XCTAssertEqual(["webp"], webp.allFileExtensions)
+            XCTAssertTrue(webp.conforms(to: .image))
+        }
+
+        // heif
+        let heif = UniformTypeIdentifier.heif
+        XCTAssertEqual("public.heif", heif.rawValue)
+        XCTAssertEqual("image/heif", heif.mimeType)
+        if #available(iOS 14, *) {
+            XCTAssertEqual(["heif", "hif"], heif.allFileExtensions)
+        } else {
+            XCTAssertEqual(["heif"], heif.allFileExtensions)
+        }
+        XCTAssertTrue(heif.conforms(to: .heifStandard))
+        XCTAssertTrue(heif.conforms(to: .image))
+
+        // heic
+        let heic = UniformTypeIdentifier.heic
+        XCTAssertEqual("public.heic", heic.rawValue)
+        XCTAssertEqual("image/heic", heic.mimeType)
+        XCTAssertEqual(["heic"], heic.allFileExtensions)
+        XCTAssertTrue(heic.conforms(to: .heifStandard))
+        XCTAssertTrue(heic.conforms(to: .image))
+    }
+
     func testAllMIMETypes() throws {
         XCTAssertEqual(Set(["text/rtf"]), Set(UniformTypeIdentifier.rtf.allMIMETypes))
         XCTAssertEqual(Set(["text/html"]), Set(UniformTypeIdentifier.html.allMIMETypes))

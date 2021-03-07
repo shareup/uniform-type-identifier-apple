@@ -67,6 +67,8 @@ extension UniformTypeIdentifier {
     public static let txnTextAndMultimediaData = UniformTypeIdentifier(rawValue: kUTTypeTXNTextAndMultimediaData as String)
     public static let webArchive = UniformTypeIdentifier(rawValue: kUTTypeWebArchive as String)
     public static let image = UniformTypeIdentifier(rawValue: kUTTypeImage as String)
+    public static let heifStandard = UniformTypeIdentifier(rawValue: "public.heif-standard")
+    public static let heif = UniformTypeIdentifier(rawValue: "public.heif")
     public static let jpeg = UniformTypeIdentifier(rawValue: kUTTypeJPEG as String)
     public static let jpeg2000 = UniformTypeIdentifier(rawValue: kUTTypeJPEG2000 as String)
     public static let tiff = UniformTypeIdentifier(rawValue: kUTTypeTIFF as String)
@@ -79,6 +81,7 @@ extension UniformTypeIdentifier {
     public static let ico = UniformTypeIdentifier(rawValue: kUTTypeICO as String)
     public static let rawImage = UniformTypeIdentifier(rawValue: kUTTypeRawImage as String)
     public static let scalableVectorGraphics = UniformTypeIdentifier(rawValue: kUTTypeScalableVectorGraphics as String)
+    public static let heic = UniformTypeIdentifier(rawValue: "public.heic")
     public static let livePhoto = UniformTypeIdentifier(rawValue: kUTTypeLivePhoto as String)
     public static let audiovisualContent = UniformTypeIdentifier(rawValue: kUTTypeAudiovisualContent as String)
     public static let movie = UniformTypeIdentifier(rawValue: kUTTypeMovie as String)
@@ -166,14 +169,13 @@ extension UniformTypeIdentifier {
     public static let sd2Audio = UniformTypeIdentifier(rawValue: "com.digidesign.sd2-audio")
     public static let realMedia = UniformTypeIdentifier(rawValue: "com.real.realmedia")
     public static let realMediaAudio = UniformTypeIdentifier(rawValue: "com.real.realaudio")
-    public static let realSMIL = UniformTypeIdentifier(rawValue: "com.real.smil")
     public static let stuffitArchive = UniformTypeIdentifier(rawValue: "com.allume.stuffit-archive")
 }
 
 extension UniformTypeIdentifier {
     public static let apng = UniformTypeIdentifier(mimeType: "image/apng")!
     public static let avif = UniformTypeIdentifier(mimeType: "image/avif")!
-    public static let webp = UniformTypeIdentifier(mimeType: "image/webp")!
+    public static let webp = UniformTypeIdentifier(rawValue: "org.webmproject.webp")
     public static let flash = UniformTypeIdentifier(mimeType: "video/x-flv")!
     public static let webmVideo = UniformTypeIdentifier(mimeType: "video/webm")!
     public static let _3gp = UniformTypeIdentifier(mimeType: "video/3gpp")!
