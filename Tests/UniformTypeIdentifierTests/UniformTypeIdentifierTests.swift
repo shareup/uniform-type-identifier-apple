@@ -141,7 +141,7 @@ final class UniformTypeIdentifierTests: XCTestCase {
         // webp
         let webp = UniformTypeIdentifier.webp
         XCTAssertEqual("org.webmproject.webp", webp.rawValue)
-        if #available(iOS 14, *) {
+        if #available(iOS 14, macOS 10.16, *) {
             XCTAssertEqual("image/webp", webp.mimeType)
             XCTAssertEqual(["webp"], webp.allFileExtensions)
             XCTAssertTrue(webp.conforms(to: .image))
@@ -151,7 +151,7 @@ final class UniformTypeIdentifierTests: XCTestCase {
         let heif = UniformTypeIdentifier.heif
         XCTAssertEqual("public.heif", heif.rawValue)
         XCTAssertEqual("image/heif", heif.mimeType)
-        if #available(iOS 14, *) {
+        if #available(iOS 14, macOS 10.16, *) {
             XCTAssertEqual(["heif", "hif"], heif.allFileExtensions)
         } else {
             XCTAssertEqual(["heif"], heif.allFileExtensions)

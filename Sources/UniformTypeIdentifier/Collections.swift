@@ -26,7 +26,8 @@ extension UniformTypeIdentifier {
                  .x509Certificate,
                  .log,
                  .efxFax,
-                 .stuffitArchive:
+                 .stuffitArchive,
+                 .wordDocument:
                 return true
                 
             default:
