@@ -186,7 +186,7 @@ private extension CollectionsTests {
             .avif,
         ]
 
-        if #available(iOS 14, macOS 10.16, *) {
+        if #available(iOS 14, macOS 11.0, *) {
             types.append(.webp)
         }
 
