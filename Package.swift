@@ -10,6 +10,10 @@ let package = Package(
         .library(
             name: "UniformTypeIdentifier",
             targets: ["UniformTypeIdentifier"]),
+        .library(
+            name: "UniformTypeIdentifierDynamic",
+            type: .dynamic,
+            targets: ["UniformTypeIdentifier"]),
     ],
     dependencies: [],
     targets: [
