@@ -9,7 +9,7 @@ To use `UniformTypeIdentifier` with the Swift Package Manager, add a dependency 
 ```swift
 let package = Package(
   dependencies: [
-    .package(url: "https://github.com/shareup/uniform-type-identifier-apple.git", .upToNextMajor(from: "1.0.0"))
+    .package(url: "https://github.com/shareup/uniform-type-identifier-apple.git", .upToNextMajor(from: "4.0.0"))
   ]
 )
 ```

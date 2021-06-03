@@ -1,4 +1,4 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.3
 import PackageDescription
 
 let package = Package(
@@ -9,11 +9,7 @@ let package = Package(
     products: [
         .library(
             name: "UniformTypeIdentifier",
-            targets: ["UniformTypeIdentifier"]),
-        .library(
-            name: "UniformTypeIdentifierDynamic",
-            type: .dynamic,
-            targets: ["UniformTypeIdentifier"]),
+            targets: ["UniformTypeIdentifier"])
     ],
     dependencies: [],
     targets: [
