@@ -75,7 +75,9 @@ public struct UniformTypeIdentifier: RawRepresentable, Hashable, Codable, Custom
         return tags
     }
 
-    public var description: String {
+    public var description: String { rawValue }
+
+    public var localizedDescription: String {
         guard let unmanagedDescription = UTTypeCopyDescription(cfString) else { return rawValue }
         let description = unmanagedDescription.takeRetainedValue() as String
         return description.isEmpty ? rawValue : description
