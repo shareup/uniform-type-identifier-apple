@@ -176,10 +176,21 @@ final class UniformTypeIdentifierTests: XCTestCase {
     }
 
     func testDescription() throws {
-        XCTAssertEqual("image", UniformTypeIdentifier.image.description)
-        XCTAssertEqual("folder", UniformTypeIdentifier.folder.description)
-        XCTAssertEqual("AVI movie", UniformTypeIdentifier.aviMovie.description)
-        XCTAssertEqual("JSON", UniformTypeIdentifier.json.description)
+        XCTAssertEqual("public.image", UniformTypeIdentifier.image.description)
+        XCTAssertEqual("public.folder", UniformTypeIdentifier.folder.description)
+        XCTAssertEqual("public.avi", UniformTypeIdentifier.aviMovie.description)
+        XCTAssertEqual("public.json", UniformTypeIdentifier.json.description)
+    }
+
+    func testLocalizedDescription() throws {
+        try XCTSkipUnless(
+            Locale.current.languageCode == "en",
+            "Localized description tests only work in an English locale"
+        )
+        XCTAssertEqual("image", UniformTypeIdentifier.image.localizedDescription)
+        XCTAssertEqual("folder", UniformTypeIdentifier.folder.localizedDescription)
+        XCTAssertEqual("AVI movie", UniformTypeIdentifier.aviMovie.localizedDescription)
+        XCTAssertEqual("JSON", UniformTypeIdentifier.json.localizedDescription)
     }
 
     static var allTests = [
@@ -193,5 +204,6 @@ final class UniformTypeIdentifierTests: XCTestCase {
         ("testMIMEType", testMIMEType),
         ("testAllMIMETypes", testAllMIMETypes),
         ("testDescription", testDescription),
+        ("testLocalizedDescription", testLocalizedDescription),
     ]
 }
