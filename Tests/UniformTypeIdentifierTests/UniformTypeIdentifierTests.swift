@@ -122,7 +122,11 @@ final class UniformTypeIdentifierTests: XCTestCase {
         XCTAssertEqual("audio/vnd.wave", UniformTypeIdentifier.waveformAudio.mimeType)
         XCTAssertEqual("audio/midi", UniformTypeIdentifier.midiAudio.mimeType)
         XCTAssertEqual("audio/mpegurl", UniformTypeIdentifier.m3uPlaylist.mimeType)
-        XCTAssertEqual("text/directory", UniformTypeIdentifier.vCard.mimeType)
+        if #available(iOS 15, macOS 12, *) {
+            XCTAssertEqual("text/vcard", UniformTypeIdentifier.vCard.mimeType)
+        } else {
+            XCTAssertEqual("text/directory", UniformTypeIdentifier.vCard.mimeType)
+        }
 
         XCTAssertNil(UniformTypeIdentifier.mpeg2TransportStream.mimeType)
         XCTAssertNil(UniformTypeIdentifier.appleProtectedMPEG4Audio.mimeType)
