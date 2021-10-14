@@ -80,7 +80,7 @@ extension UniformTypeIdentifier {
     public static let bmp = UniformTypeIdentifier(rawValue: kUTTypeBMP as String)
     public static let ico = UniformTypeIdentifier(rawValue: kUTTypeICO as String)
     public static let rawImage = UniformTypeIdentifier(rawValue: kUTTypeRawImage as String)
-    public static let scalableVectorGraphics = UniformTypeIdentifier(rawValue: kUTTypeScalableVectorGraphics as String)
+    public static let svg = UniformTypeIdentifier(rawValue: kUTTypeScalableVectorGraphics as String)
     public static let heic = UniformTypeIdentifier(rawValue: "public.heic")
     public static let livePhoto = UniformTypeIdentifier(rawValue: kUTTypeLivePhoto as String)
     public static let audiovisualContent = UniformTypeIdentifier(rawValue: kUTTypeAudiovisualContent as String)
