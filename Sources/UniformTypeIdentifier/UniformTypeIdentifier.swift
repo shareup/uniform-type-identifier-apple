@@ -2,11 +2,13 @@
     import Foundation
     import MobileCoreServices
 #elseif os(OSX)
-    import Foundation
     import CoreServices
+    import Foundation
 #endif
 
-public struct UniformTypeIdentifier: RawRepresentable, Hashable, Codable, CustomStringConvertible {
+public struct UniformTypeIdentifier: RawRepresentable, Hashable, Codable,
+    CustomStringConvertible, Sendable
+{
     public let rawValue: String
 
     public init(rawValue: String) {
@@ -19,7 +21,8 @@ public struct UniformTypeIdentifier: RawRepresentable, Hashable, Codable, Custom
             fileExtension as CFString,
             parentType?.cfString
         )
-        guard let identifier = unmanagedIdentifier?.takeRetainedValue() as String? else { return nil }
+        guard let identifier = unmanagedIdentifier?.takeRetainedValue() as String?
+        else { return nil }
         self.init(rawValue: identifier)
     }
 
@@ -29,56 +32,64 @@ public struct UniformTypeIdentifier: RawRepresentable, Hashable, Codable, Custom
             mimeType as CFString,
             parentType?.cfString
         )
-        guard let identifier = unmanagedIdentifier?.takeRetainedValue() as String? else { return nil }
+        guard let identifier = unmanagedIdentifier?.takeRetainedValue() as String?
+        else { return nil }
         self.init(rawValue: identifier)
     }
 
     public static func == (lhs: UniformTypeIdentifier, rhs: UniformTypeIdentifier) -> Bool {
-        return UTTypeEqual(lhs.cfString, rhs.cfString)
+        UTTypeEqual(lhs.cfString, rhs.cfString)
     }
 
     public func conforms(to other: UniformTypeIdentifier) -> Bool {
-        return UTTypeConformsTo(self.cfString, other.cfString)
+        UTTypeConformsTo(cfString, other.cfString)
     }
 
     public var identifier: String? {
         guard let unmanagedDictionary = UTTypeCopyDeclaration(cfString) else { return nil }
-        guard let dictionary = unmanagedDictionary.takeRetainedValue() as? Dictionary<String, Any> else {
+        guard let dictionary = unmanagedDictionary.takeRetainedValue() as? [String: Any] else {
             return nil
         }
         return dictionary[kUTTypeIdentifierKey as String] as? String
     }
 
     public var fileExtension: String? {
-        return UTTypeCopyPreferredTagWithClass(
+        UTTypeCopyPreferredTagWithClass(
             cfString,
             UniformTypeIdentifier.fileExtension.cfString
         )?.takeRetainedValue() as String?
     }
 
-    public var allFileExtensions: Array<String> {
-        let unmanagedTags = UTTypeCopyAllTagsWithClass(cfString, UniformTypeIdentifier.fileExtension.cfString)
-        guard let tags = unmanagedTags?.takeRetainedValue() as? Array<String> else { return [] }
+    public var allFileExtensions: [String] {
+        let unmanagedTags = UTTypeCopyAllTagsWithClass(
+            cfString,
+            UniformTypeIdentifier.fileExtension.cfString
+        )
+        guard let tags = unmanagedTags?.takeRetainedValue() as? [String] else { return [] }
         return tags
     }
 
     public var mimeType: String? {
-        return UTTypeCopyPreferredTagWithClass(
+        UTTypeCopyPreferredTagWithClass(
             cfString,
             UniformTypeIdentifier.mimeType.cfString
         )?.takeRetainedValue() as String?
     }
 
-    public var allMIMETypes: Array<String> {
-        let unmanagedTags = UTTypeCopyAllTagsWithClass(cfString, UniformTypeIdentifier.mimeType.cfString)
-        guard let tags = unmanagedTags?.takeRetainedValue() as? Array<String> else { return [] }
+    public var allMIMETypes: [String] {
+        let unmanagedTags = UTTypeCopyAllTagsWithClass(
+            cfString,
+            UniformTypeIdentifier.mimeType.cfString
+        )
+        guard let tags = unmanagedTags?.takeRetainedValue() as? [String] else { return [] }
         return tags
     }
 
     public var description: String { rawValue }
 
     public var localizedDescription: String {
-        guard let unmanagedDescription = UTTypeCopyDescription(cfString) else { return rawValue }
+        guard let unmanagedDescription = UTTypeCopyDescription(cfString)
+        else { return rawValue }
         let description = unmanagedDescription.takeRetainedValue() as String
         return description.isEmpty ? rawValue : description
     }
@@ -86,6 +97,6 @@ public struct UniformTypeIdentifier: RawRepresentable, Hashable, Codable, Custom
 
 extension UniformTypeIdentifier {
     private var cfString: CFString {
-        return rawValue as CFString
+        rawValue as CFString
     }
 }

@@ -1,8 +1,8 @@
 import Foundation
 
-extension UniformTypeIdentifier {
+public extension UniformTypeIdentifier {
     /// `UniformTypeIdentifier`s including user-generated documents, media, and other files.
-    public var isDocument: Bool {
+    var isDocument: Bool {
         if isImage || isVideo || isAudio || conforms(to: .content) {
             return true
         } else {
@@ -29,7 +29,7 @@ extension UniformTypeIdentifier {
                  .stuffitArchive,
                  .wordDocument:
                 return true
-                
+
             default:
                 return false
             }
@@ -37,7 +37,7 @@ extension UniformTypeIdentifier {
     }
 
     /// `Set` of `UniformTypeIdentifier`s including image types.
-    public var isImage: Bool {
+    var isImage: Bool {
         if conforms(to: .image) {
             return true
         } else {
@@ -50,7 +50,7 @@ extension UniformTypeIdentifier {
         }
     }
 
-    public var isVideo: Bool {
+    var isVideo: Bool {
         if conforms(to: .audiovisualContent) {
             return true
         } else {
@@ -63,7 +63,7 @@ extension UniformTypeIdentifier {
         }
     }
 
-    public var isAudio: Bool {
+    var isAudio: Bool {
         if conforms(to: .audio) {
             return true
         } else {

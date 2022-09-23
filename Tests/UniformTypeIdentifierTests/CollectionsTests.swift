@@ -1,9 +1,9 @@
-import XCTest
 import UniformTypeIdentifier
+import XCTest
 
 final class CollectionsTests: XCTestCase {
     func testIsDocument() throws {
-        Self.documentTypes.forEach { (type) in
+        Self.documentTypes.forEach { type in
             XCTAssertTrue(type.isDocument, "\(type.rawValue) is not a document")
         }
 
@@ -13,19 +13,19 @@ final class CollectionsTests: XCTestCase {
     }
 
     func testIsImage() throws {
-        Self.imageTypes.forEach { (type) in
+        Self.imageTypes.forEach { type in
             XCTAssertTrue(type.isImage, "\(type.rawValue) is not an image")
         }
     }
 
     func testIsVideo() throws {
-        Self.videoTypes.forEach { (type) in
+        Self.videoTypes.forEach { type in
             XCTAssertTrue(type.isVideo, "\(type.rawValue) is not a video")
         }
     }
 
     func testIsAudio() throws {
-        Self.audioTypes.forEach { (type) in
+        Self.audioTypes.forEach { type in
             XCTAssertTrue(type.isAudio, "\(type.rawValue) is not audio")
         }
     }
@@ -213,7 +213,7 @@ private extension CollectionsTests {
         .webmVideo,
         .oggVideo,
     ]
-    
+
     static let audioTypes: [UniformTypeIdentifier] = [
         .audio,
         .mp3,

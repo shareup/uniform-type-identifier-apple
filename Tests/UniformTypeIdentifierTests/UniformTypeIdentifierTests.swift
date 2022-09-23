@@ -1,5 +1,5 @@
-import XCTest
 @testable import UniformTypeIdentifier
+import XCTest
 
 final class UniformTypeIdentifierTests: XCTestCase {
     func testInitializeWithFileExtension() throws {
@@ -8,7 +8,8 @@ final class UniformTypeIdentifierTests: XCTestCase {
         XCTAssertEqual("docx", docx.fileExtension)
         XCTAssertEqual(Set(["docx"]), Set(docx.allFileExtensions))
 
-        let mimeTypes = ["application/vnd.openxmlformats-officedocument.wordprocessingml.document"]
+        let mimeTypes =
+            ["application/vnd.openxmlformats-officedocument.wordprocessingml.document"]
         XCTAssertEqual(mimeTypes[0], docx.mimeType)
         XCTAssertEqual(Set(mimeTypes), Set(docx.allMIMETypes))
 
@@ -83,7 +84,7 @@ final class UniformTypeIdentifierTests: XCTestCase {
         ]
 
         let identifiers = try [
-            "doc", "docx", "xls", "xlsx", "ppt", "pptx"
+            "doc", "docx", "xls", "xlsx", "ppt", "pptx",
         ].map { try XCTUnwrap(UniformTypeIdentifier(fileExtension: $0)?.identifier) }
 
         XCTAssertEqual(expectedIdentifiers, identifiers)
@@ -99,11 +100,20 @@ final class UniformTypeIdentifierTests: XCTestCase {
     }
 
     func testAllFileExtensions() throws {
-        XCTAssertEqual(Set(["jpeg", "jpg", "jpe"]), Set(UniformTypeIdentifier.jpeg.allFileExtensions))
+        XCTAssertEqual(
+            Set(["jpeg", "jpg", "jpe"]),
+            Set(UniformTypeIdentifier.jpeg.allFileExtensions)
+        )
         XCTAssertEqual(["png"], UniformTypeIdentifier.png.allFileExtensions)
-        XCTAssertEqual(Set(["txt", "text"]), Set(UniformTypeIdentifier.plainText.allFileExtensions))
+        XCTAssertEqual(
+            Set(["txt", "text"]),
+            Set(UniformTypeIdentifier.plainText.allFileExtensions)
+        )
         XCTAssertEqual(Set(["mp4", "mpg4"]), Set(UniformTypeIdentifier.mpeg4.allFileExtensions))
-        XCTAssertEqual(Set([ "html" , "htm", "shtml", "shtm" ]), Set(UniformTypeIdentifier.html.allFileExtensions))
+        XCTAssertEqual(
+            Set(["html", "htm", "shtml", "shtm"]),
+            Set(UniformTypeIdentifier.html.allFileExtensions)
+        )
 
         XCTAssertEqual([], UniformTypeIdentifier.text.allFileExtensions)
         XCTAssertEqual([], UniformTypeIdentifier.utf8PlainText.allFileExtensions)
@@ -175,7 +185,10 @@ final class UniformTypeIdentifierTests: XCTestCase {
     func testAllMIMETypes() throws {
         XCTAssertEqual(Set(["text/rtf"]), Set(UniformTypeIdentifier.rtf.allMIMETypes))
         XCTAssertEqual(Set(["text/html"]), Set(UniformTypeIdentifier.html.allMIMETypes))
-        XCTAssertEqual(Set(["text/xml", "application/xml"]), Set(UniformTypeIdentifier.xml.allMIMETypes))
+        XCTAssertEqual(
+            Set(["text/xml", "application/xml"]),
+            Set(UniformTypeIdentifier.xml.allMIMETypes)
+        )
         XCTAssertEqual(Set([]), Set(UniformTypeIdentifier.sourceCode.allMIMETypes))
     }
 
