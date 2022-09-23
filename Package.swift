@@ -9,15 +9,18 @@ let package = Package(
     products: [
         .library(
             name: "UniformTypeIdentifier",
-            targets: ["UniformTypeIdentifier"])
+            targets: ["UniformTypeIdentifier"]
+        ),
     ],
     dependencies: [],
     targets: [
         .target(
             name: "UniformTypeIdentifier",
-            dependencies: []),
+            dependencies: []
+        ),
         .testTarget(
             name: "UniformTypeIdentifierTests",
-            dependencies: ["UniformTypeIdentifier"]),
+            dependencies: ["UniformTypeIdentifier"]
+        ),
     ]
 )
