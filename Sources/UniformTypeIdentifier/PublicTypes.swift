@@ -244,6 +244,11 @@ public extension UniformTypeIdentifier {
 }
 
 public extension UniformTypeIdentifier {
+    static let affinityPhoto = UniformTypeIdentifier(fileExtension: "afphoto")!
+    static let affinityDesign = UniformTypeIdentifier(fileExtension: "afdesign")!
+}
+
+public extension UniformTypeIdentifier {
     static let wordDocumentXML =
         UniformTypeIdentifier(rawValue: "org.openxmlformats.wordprocessingml.document")
     static let excelSpreadsheetXML =
