@@ -246,6 +246,11 @@ public extension UniformTypeIdentifier {
 public extension UniformTypeIdentifier {
     static let affinityPhoto = UniformTypeIdentifier(fileExtension: "afphoto")!
     static let affinityDesign = UniformTypeIdentifier(fileExtension: "afdesign")!
+    static let sketchFile = UniformTypeIdentifier(
+        fileExtension: "sketch",
+        conformingTo: .zipArchive
+    )!
+    static let adobeXd = UniformTypeIdentifier(fileExtension: "xd", conformingTo: .zipArchive)!
 }
 
 public extension UniformTypeIdentifier {
