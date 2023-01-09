@@ -200,6 +200,9 @@ public extension UniformTypeIdentifier {
         UniformTypeIdentifier(rawValue: "com.microsoft.windows-media-wax")
     static let keynotePresentation = UniformTypeIdentifier(rawValue: "com.apple.keynote.key")
     static let keynoteTheme = UniformTypeIdentifier(rawValue: "com.apple.keynote.kth")
+    static let pagesDocument = UniformTypeIdentifier(rawValue: "com.apple.iwork.pages.pages")
+    static let numbersSpreadsheet =
+        UniformTypeIdentifier(rawValue: "com.apple.iwork.numbers.numbers")
     static let tgaImage = UniformTypeIdentifier(rawValue: "com.truevision.tga-image")
     static let sgiImage = UniformTypeIdentifier(rawValue: "com.sgi.sgi-image")
     static let openEXRImage = UniformTypeIdentifier(rawValue: "com.ilm.openexr-image")
@@ -223,6 +226,21 @@ public extension UniformTypeIdentifier {
     static let webmAudio = UniformTypeIdentifier(mimeType: "audio/webm")!
     static let oggAudio = UniformTypeIdentifier(mimeType: "audio/ogg")!
     static let oggApplication = UniformTypeIdentifier(mimeType: "application/ogg")!
+}
+
+public extension UniformTypeIdentifier {
+    static let googleDocument = UniformTypeIdentifier(
+        mimeType: "application/vnd.google-apps.document",
+        conformingTo: .compositeContent
+    )!
+    static let googleSlidesPresentation = UniformTypeIdentifier(
+        mimeType: "application/vnd.google-apps.presentation",
+        conformingTo: .presentation
+    )!
+    static let googleSheetsSpreadsheet = UniformTypeIdentifier(
+        mimeType: "application/vnd.google-apps.spreadsheet",
+        conformingTo: .spreadsheet
+    )!
 }
 
 public extension UniformTypeIdentifier {

@@ -34,6 +34,7 @@ final class UniformTypeIdentifierTests: XCTestCase {
         XCTAssertTrue(ppt.conforms(to: UniformTypeIdentifier.data))
         XCTAssertTrue(ppt.conforms(to: UniformTypeIdentifier.content))
         XCTAssertTrue(ppt.conforms(to: UniformTypeIdentifier.compositeContent))
+        XCTAssertTrue(ppt.conforms(to: UniformTypeIdentifier.presentation))
 
         XCTAssertNotEqual(UniformTypeIdentifier(fileExtension: "pptx"), ppt)
     }
@@ -81,10 +82,12 @@ final class UniformTypeIdentifierTests: XCTestCase {
             "org.openxmlformats.spreadsheetml.sheet",
             "com.microsoft.powerpoint.ppt",
             "org.openxmlformats.presentationml.presentation",
+            "com.apple.iwork.pages.pages",
+            "com.apple.iwork.numbers.numbers",
         ]
 
         let identifiers = try [
-            "doc", "docx", "xls", "xlsx", "ppt", "pptx",
+            "doc", "docx", "xls", "xlsx", "ppt", "pptx", "pages", "numbers",
         ].map { try XCTUnwrap(UniformTypeIdentifier(fileExtension: $0)?.identifier) }
 
         XCTAssertEqual(expectedIdentifiers, identifiers)
