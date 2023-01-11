@@ -20,6 +20,23 @@ final class UniformTypeIdentifierTests: XCTestCase {
         XCTAssertNotEqual(UniformTypeIdentifier(fileExtension: "doc"), docx)
     }
 
+    func testInitializationWithFileExtensionOnly() throws {
+        let afPhoto = try XCTUnwrap(UniformTypeIdentifier(fileExtension: "afphoto"))
+        XCTAssertEqual(afPhoto.fileExtension, UniformTypeIdentifier.affinityPhoto.fileExtension)
+
+        let afDesign = try XCTUnwrap(UniformTypeIdentifier(fileExtension: "afdesign"))
+        XCTAssertEqual(
+            afDesign.fileExtension,
+            UniformTypeIdentifier.affinityDesign.fileExtension
+        )
+
+        let adobeXd = try XCTUnwrap(UniformTypeIdentifier(fileExtension: "xd"))
+        XCTAssertEqual(adobeXd.fileExtension, UniformTypeIdentifier.adobeXd.fileExtension)
+
+        let sketch = try XCTUnwrap(UniformTypeIdentifier(fileExtension: "sketch"))
+        XCTAssertEqual(sketch.fileExtension, UniformTypeIdentifier.sketchFile.fileExtension)
+    }
+
     func testInitializeWithMIMEType() throws {
         let pptMIMEType = "application/vnd.ms-powerpoint"
         let ppt = try XCTUnwrap(UniformTypeIdentifier(mimeType: pptMIMEType))
@@ -34,6 +51,7 @@ final class UniformTypeIdentifierTests: XCTestCase {
         XCTAssertTrue(ppt.conforms(to: UniformTypeIdentifier.data))
         XCTAssertTrue(ppt.conforms(to: UniformTypeIdentifier.content))
         XCTAssertTrue(ppt.conforms(to: UniformTypeIdentifier.compositeContent))
+        XCTAssertTrue(ppt.conforms(to: UniformTypeIdentifier.presentation))
 
         XCTAssertNotEqual(UniformTypeIdentifier(fileExtension: "pptx"), ppt)
     }
@@ -81,10 +99,12 @@ final class UniformTypeIdentifierTests: XCTestCase {
             "org.openxmlformats.spreadsheetml.sheet",
             "com.microsoft.powerpoint.ppt",
             "org.openxmlformats.presentationml.presentation",
+            "com.apple.iwork.pages.pages",
+            "com.apple.iwork.numbers.numbers",
         ]
 
         let identifiers = try [
-            "doc", "docx", "xls", "xlsx", "ppt", "pptx",
+            "doc", "docx", "xls", "xlsx", "ppt", "pptx", "pages", "numbers",
         ].map { try XCTUnwrap(UniformTypeIdentifier(fileExtension: $0)?.identifier) }
 
         XCTAssertEqual(expectedIdentifiers, identifiers)
