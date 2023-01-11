@@ -20,6 +20,23 @@ final class UniformTypeIdentifierTests: XCTestCase {
         XCTAssertNotEqual(UniformTypeIdentifier(fileExtension: "doc"), docx)
     }
 
+    func testInitializationWithFileExtensionOnly() throws {
+        let afPhoto = try XCTUnwrap(UniformTypeIdentifier(fileExtension: "afphoto"))
+        XCTAssertEqual(afPhoto.fileExtension, UniformTypeIdentifier.affinityPhoto.fileExtension)
+
+        let afDesign = try XCTUnwrap(UniformTypeIdentifier(fileExtension: "afdesign"))
+        XCTAssertEqual(
+            afDesign.fileExtension,
+            UniformTypeIdentifier.affinityDesign.fileExtension
+        )
+
+        let adobeXd = try XCTUnwrap(UniformTypeIdentifier(fileExtension: "xd"))
+        XCTAssertEqual(adobeXd.fileExtension, UniformTypeIdentifier.adobeXd.fileExtension)
+
+        let sketch = try XCTUnwrap(UniformTypeIdentifier(fileExtension: "sketch"))
+        XCTAssertEqual(sketch.fileExtension, UniformTypeIdentifier.sketchFile.fileExtension)
+    }
+
     func testInitializeWithMIMEType() throws {
         let pptMIMEType = "application/vnd.ms-powerpoint"
         let ppt = try XCTUnwrap(UniformTypeIdentifier(mimeType: pptMIMEType))
